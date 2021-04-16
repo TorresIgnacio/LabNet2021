@@ -12,6 +12,7 @@ namespace EjercicioPOO
         {
             var numeroTransportes = 10;
             
+            //En caso de que el numero de transportes dado sea impar se lo convierte a par
             if (numeroTransportes % 2 != 0)
                 numeroTransportes++;
 
