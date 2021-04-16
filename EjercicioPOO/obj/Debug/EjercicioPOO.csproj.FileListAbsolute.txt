@@ -1,0 +1,7 @@
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\obj\Debug\EjercicioPOO.csprojAssemblyReference.cache
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\obj\Debug\EjercicioPOO.csproj.CoreCompileInputs.cache
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\bin\Debug\EjercicioPOO.exe.config
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\bin\Debug\EjercicioPOO.exe
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\bin\Debug\EjercicioPOO.pdb
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\obj\Debug\EjercicioPOO.exe
+C:\Users\Nacho Torres\source\repos\EjercicioPOO\EjercicioPOO\obj\Debug\EjercicioPOO.pdb
