@@ -1,4 +1,7 @@
-# Archivos de compilacion/compilados
+# Archivos ignorados de visualstudio
 
+*.config
+*.cache
+*.pdb
 *.dll
 *.exe
