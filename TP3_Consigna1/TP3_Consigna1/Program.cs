@@ -10,8 +10,9 @@ namespace TP3_Consigna1
     {
         static void Main(string[] args)
         {
-            Operaciones.Dividir();
-            Console.Read();
+
+                Operaciones.Dividir(0);
+                Console.Read();
         }
     }
 }

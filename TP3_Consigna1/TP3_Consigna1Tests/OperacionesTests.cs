@@ -16,45 +16,28 @@ namespace TP3_Consigna1.Tests
         public void DividirTest()
         {
             // Arrange
-            var stringWrite = new StringReader("10\n2");
-            decimal resultadoEsperado = 5.0M;
-            Console.SetIn(stringWrite);
+            decimal valor = 2;
 
             //Act
-            var resultado = Operaciones.Dividir();
+            var resultado = Operaciones.Dividir(valor);
 
             // Assert
-            Assert.AreEqual(resultadoEsperado, resultado);
+            Assert.IsTrue(resultado);
         }
 
 
         [TestMethod]
-        [ExpectedException(typeof(DivideByZeroException))]
-        public void Dividir_DivisionPorCero_ArrojaExcepcion()
+        public void Dividir_DivisionPorCero_RetornaFalso()
         {
             // Arrange
-            var stringWrite = new StringReader("10\n0");
-            Console.SetIn(stringWrite);
-
+            decimal valor = 0;
             //Act
-            var resultado = Operaciones.Dividir();
-
-            // Assert manejado por excepciones
-        }
-
-        [TestMethod()]
-        public void Dividir_UsuarioIngresa0EnDividendo_ResultadoCero()
-        {
-            // Arrange
-            var stringWrite = new StringReader("0\n2");
-            decimal resultadoEsperado = 0M;
-            Console.SetIn(stringWrite);
-
-            //Act
-            var resultado = Operaciones.Dividir();
+            var resultado = Operaciones.Dividir(valor);
 
             // Assert
-            Assert.AreEqual(resultadoEsperado, resultado);
+            Assert.IsFalse(resultado);
         }
+
+
     }
 }

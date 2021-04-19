@@ -8,25 +8,20 @@ namespace TP3_Consigna1
 {
     public class Operaciones
     {
-        public static decimal Dividir()
+        private static decimal dividendo = 30.2M;
+        public static bool Dividir(decimal valor)
         {
-            decimal divisor, dividendo, resultado;
-
             try
             {
-                Console.WriteLine("Ingrese dividendo:");
-                dividendo = Convert.ToDecimal(Console.ReadLine());
-                Console.WriteLine("Ingrese divisor:");
-                divisor = Convert.ToDecimal(Console.ReadLine());
-                resultado = dividendo / divisor;
-                Console.WriteLine($"{dividendo}/{divisor} = {resultado.ToString("F3")}");
-                return resultado;
+                decimal resultado = dividendo / valor;
+                Console.WriteLine($"{dividendo}/{valor} = {resultado.ToString("F3")}");
+                return true;
             }
             catch (DivideByZeroException ex)
             {
                 Console.WriteLine(ex.GetType().Name);
                 Console.WriteLine(ex.Message);
-                throw ex;
+                return false;
             }
            
             finally
