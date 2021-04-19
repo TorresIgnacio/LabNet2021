@@ -15,8 +15,14 @@ namespace LOGIC
         {
             if (monto > montoMaximo)
             {
-                throw new ArgumentException($"No se puede transferir mas de {montoMaximo} por operacion");   
+                throw new ArgumentOutOfRangeException("monto", $"No se puede transferir mas de {montoMaximo} por operacion");   
             }
+
+            if (monto < 0 )
+            {
+                throw new ArgumentOutOfRangeException("monto", "La transaccion no puede ser menor a cero");
+            }
+
             else
             {
                 Database.ModificarSaldoUsuario(-monto, id1);

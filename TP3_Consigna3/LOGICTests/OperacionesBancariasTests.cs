@@ -20,10 +20,18 @@ namespace LOGIC.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Transferencia_MontoMayorAlPermitido_ArrojaExcepcion()
         {
             double id1 = 0, id2 = 1, monto = 133000;
+            OperacionesBancarias.Transferencia(id1, id2, monto);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Transferencia_MontMenorACero_ArrojaExcepcion()
+        {
+            double id1 = 0, id2 = 1, monto = -30000;
             OperacionesBancarias.Transferencia(id1, id2, monto);
         }
     }
