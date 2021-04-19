@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3_Consigna1", "TP3_Consigna1\TP3_Consigna1.csproj", "{8EA3F63E-9D41-4214-A67E-66408F2FE4BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3_Consigna1Tests", "TP3_Consigna1Tests\TP3_Consigna1Tests.csproj", "{DFEEC52B-F4E9-4057-B9D1-B5CDC2358FC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EA3F63E-9D41-4214-A67E-66408F2FE4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA3F63E-9D41-4214-A67E-66408F2FE4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA3F63E-9D41-4214-A67E-66408F2FE4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA3F63E-9D41-4214-A67E-66408F2FE4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFEEC52B-F4E9-4057-B9D1-B5CDC2358FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFEEC52B-F4E9-4057-B9D1-B5CDC2358FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFEEC52B-F4E9-4057-B9D1-B5CDC2358FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFEEC52B-F4E9-4057-B9D1-B5CDC2358FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E642A86-2083-4BB6-9DCF-9504C28D00AB}
+	EndGlobalSection
+EndGlobal
