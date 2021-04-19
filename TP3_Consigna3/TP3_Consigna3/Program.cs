@@ -17,7 +17,7 @@ namespace TP3_Consigna3
 				//Funcion Transferencia acepta 2 ID de usuario  y un monto, el primer usuario transfiere al segundo el monto provisto
 				//Solamente existen 2 ID de usuario que son '0' y '1'
 				//No se comprueba que la cuenta emisora tenga los fondos necesarios
-                OperacionesBancarias.Transferencia(0, 1, 12000);
+                OperacionesBancarias.Transferencia(0, 1, 133000);
                 Console.WriteLine("La transaccion fue un exito");
             }
             catch (Exception ex)
