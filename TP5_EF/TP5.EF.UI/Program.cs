@@ -12,9 +12,9 @@ namespace TP5.EF.UI
     {
         static void Main(string[] args)
         {
-            int i = 0;
             CustomersLogic customersLogic = new CustomersLogic();
             OrdersLogic ordersLogic = new OrdersLogic();
+            DisplayMethods displayMethods = new DisplayMethods();
 
 
             #region Alta, Baja, Modificacion
@@ -68,39 +68,35 @@ namespace TP5.EF.UI
             }
 
 
-            /*Nota: Para evitar usar el select * recurri a hacer un metodo por cada columna que necesitaba, no encontre forma de realizar
-             * un select de multiples columnas (pero no de todas) sin el uso de la condicion where
-             BUG: el Max() de companyName no retorna la string de mayor longitud*/
+            var customersBasicInfo = customersLogic.GetBasicInfo();
+            var paddings = displayMethods.GetPaddings(customersBasicInfo);
 
-            var customerID  = customersLogic.GetCustomersIDs();
-            var contactName = customersLogic.GetContactsNames();
-            var companyName = customersLogic.GetCompaniesNames();
-            var country     = customersLogic.GetCountries();
-            var contactPad = contactName.Select(c => c.Length).Max();
-            var companyPad = companyName.Select(c => c.Length).Max();
-            var countryPad = country.Select(c => c.Length).Max();
-
-            for (int j = 0; j < customerID.Count; j++)
+            int i = 0;
+            foreach (var customer in customersBasicInfo)
             {
-                if (j == 0)
-                    Console.WriteLine("\n\n{0,5}{1}{2}{3}{4}",
-                    " ",
-                    "Cliente".PadRight(contactPad),
-                    "ID".PadRight(7),
-                    "Compania".PadRight(companyPad),
-                    "Pais"
+                if (i == 0)
+                {
+                    Console.WriteLine("\n\n|{0}|{1}|{2}|{3}|",
+                        "ID".PadRight(5),
+                        "Cliente".PadRight(paddings[0]),
+                        "Compania".PadRight(paddings[1]),
+                        "Pais".PadRight(paddings[2])
+                        );
+                    Console.WriteLine("{0}",
+                        "-".PadRight(10 + paddings[0] + paddings[1] + paddings[2], '-'));
+                }
+                Console.WriteLine("|{0}|{1}|{2}|{3}|",
+                    customer.customerID.PadRight(5),
+                    customer.contactName.PadRight(paddings[0]),
+                    customer.companyName.PadRight(paddings[1]),
+                    customer.country.PadRight(paddings[2])
                     );
-
-                Console.WriteLine("|{0}|{1}|{2}|{3}|{4}|",
-                (j + 1).ToString("D2"),
-                contactName[j].PadRight(contactPad),
-                customerID[j].PadRight(5),
-                companyName[j].PadRight(companyPad),
-                country[j].PadRight(countryPad)
-                );
+                i++;
             }
 
-           
+            
+
+
             Console.Read();
 
 

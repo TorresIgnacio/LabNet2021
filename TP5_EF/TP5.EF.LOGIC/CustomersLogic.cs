@@ -48,6 +48,19 @@ namespace TP5.EF.LOGIC
             return countries;
         }
 
+        public List<CustomersBasicInfo> GetBasicInfo()
+        {
+            var customers = context.Customers.Select(cust => new CustomersBasicInfo
+            {
+                customerID  = cust.CustomerID,
+                contactName = cust.ContactName,
+                companyName = cust.CompanyName,
+                country     = cust.Country
+            }).ToList();
+            
+            return customers;
+        }
+
         public void Add(Customers newCustomer)
         {
             //Verifica que la id del nuevo cliente que se quiere agregar no exista
