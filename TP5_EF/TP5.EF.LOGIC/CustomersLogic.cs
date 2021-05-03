@@ -10,10 +10,48 @@ namespace TP5.EF.LOGIC
 {
     public class CustomersLogic : CommonLogic, IABMLogic<Customers, string>
     {
+        public List<Customers> GetAll()
+        {
+            return context.Customers.ToList();
+        }
+
+
+        public List<Customers> GetCustomer(string customerID)
+        {
+            var customer = (from cust in context.Customers
+                                  where cust.CustomerID == customerID
+                                  select cust).ToList();
+            return customer;
+        }
+
+        public List<string> GetCustomersIDs()
+        {
+            var customersIDs = context.Customers.Select(c => c.CustomerID).ToList();
+            return customersIDs;
+        }
+
+        public List<string> GetContactsNames()
+        {
+            var contactsNames = context.Customers.Select(c => c.ContactName).ToList();
+            return contactsNames;
+        }
+
+        public List<string> GetCompaniesNames()
+        {
+            var companiesNames = context.Customers.Select(c => c.CompanyName).ToList();
+            return companiesNames;
+        }
+
+        public List<string> GetCountries()
+        {
+            var countries = context.Customers.Select(c => c.Country).ToList();
+            return countries;
+        }
+
         public void Add(Customers newCustomer)
         {
             //Verifica que la id del nuevo cliente que se quiere agregar no exista
-            if(!context.Customers.Any(c => c.CustomerID == newCustomer.CustomerID))
+            if (!context.Customers.Any(c => c.CustomerID == newCustomer.CustomerID))
             {
                 context.Customers.Add(newCustomer);
                 context.SaveChanges();
@@ -30,34 +68,6 @@ namespace TP5.EF.LOGIC
             context.SaveChanges();
         }
 
-        public List<Customers> GetAll()
-        {
-            return context.Customers.ToList();
-        }
-
-
-        public List<Customers> GetCustomer(string customerID)
-        {
-            var customer = (from cust in context.Customers
-                                  where cust.CustomerID == customerID
-                                  select cust).ToList();
-            return customer;
-        }
-
-
-
-
-        public List<string> GetContactsNames()
-        {
-                var contactsNames = context.Customers.Select(c => c.ContactName).ToList();
-                return contactsNames;
-        }
-
-        public List<string> GetCustomersIDs()
-        {
-            var customersIDs = context.Customers.Select(c => c.CustomerID).ToList();
-            return customersIDs;
-        }
 
         //UpdateLazy updatea los campos provistos dejando tal cual estaban los que no han sido especificados
         public void UpdateLazy(Customers customer)

@@ -59,6 +59,8 @@ namespace TP5.EF.UI
                 cacto[0].CompanyName,
                 cacto[0].Country);
 
+            #endregion
+
             Console.WriteLine($"Pedidos de CACTO:");
             foreach (var order in ordersLogic.GetCustomerOrders("CACTU"))
             {
@@ -66,35 +68,29 @@ namespace TP5.EF.UI
             }
 
 
-            //El select * es feo pero que linda me salio la tabla
-            #region select * feo
-            var query1 = customersLogic.GetAll();
-            int padding = customersLogic.CalcPad(query1);
+            /*Nota: Para evitar usar el select * recurri a hacer un metodo por cada columna que necesitaba, no encontre forma de realizar
+             * un select de multiples columnas (pero no de todas) sin el uso de la condicion where
+             BUG: el Max() de companyName no retorna la string de mayor longitud*/
 
-            foreach (var customers in query1)
+            var customerID  = customersLogic.GetCustomersIDs();
+            var contactName = customersLogic.GetContactsNames();
+            var companyName = customersLogic.GetCompaniesNames();
+            var country     = customersLogic.GetCountries();
+
+            for (int j = 0; j < customerID.Count; j++)
             {
-                if (i == 0)
-                    Console.WriteLine("\n\n{0}{1}{2,22}{3,28}",
-                    "Cliente".PadLeft(7 + padding / 2),
-                    "ID".PadLeft(3 + padding / 2),
-                    "Compania",
-                    "Pais"
-                    );
-
-                Console.WriteLine("|{0}|{1}|{2}|{3,-38}|{4,12}|",
-                (i + 1).ToString("D2"),
-                customers.ContactName?.PadRight(padding) ?? " ".PadRight(padding),
-                customers.CustomerID,
-                customers.CompanyName?.PadRight(35) ?? " ".PadRight(35),
-                customers.Country ?? " "
+                
+                Console.WriteLine("|{0}|{1}|{2}|{3}|{4}|",
+                (j + 1).ToString("D2"),
+                contactName[j].PadRight(contactName.Max().Length),
+                customerID[j].PadRight(5),
+                companyName[j].PadRight(38),
+                country[j].PadRight(13)
                 );
-                i++;
-
             }
 
+           
             Console.Read();
-            #endregion
-#endregion
 
 
 
