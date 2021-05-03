@@ -76,16 +76,27 @@ namespace TP5.EF.UI
             var contactName = customersLogic.GetContactsNames();
             var companyName = customersLogic.GetCompaniesNames();
             var country     = customersLogic.GetCountries();
+            var contactPad = contactName.Select(c => c.Length).Max();
+            var companyPad = companyName.Select(c => c.Length).Max();
+            var countryPad = country.Select(c => c.Length).Max();
 
             for (int j = 0; j < customerID.Count; j++)
             {
-                
+                if (j == 0)
+                    Console.WriteLine("\n\n{0,5}{1}{2}{3}{4}",
+                    " ",
+                    "Cliente".PadRight(contactPad),
+                    "ID".PadRight(7),
+                    "Compania".PadRight(companyPad),
+                    "Pais"
+                    );
+
                 Console.WriteLine("|{0}|{1}|{2}|{3}|{4}|",
                 (j + 1).ToString("D2"),
-                contactName[j].PadRight(contactName.Max().Length),
+                contactName[j].PadRight(contactPad),
                 customerID[j].PadRight(5),
-                companyName[j].PadRight(38),
-                country[j].PadRight(13)
+                companyName[j].PadRight(companyPad),
+                country[j].PadRight(countryPad)
                 );
             }
 
