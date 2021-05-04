@@ -23,28 +23,44 @@ namespace TP6.LINQ.UI
                 {
                     Console.WriteLine("\n\n|{0}|{1}|{2}|  {3}|",
                         "ID".PadRight(3),
-                        "Producto".PadRight(paddings[0]),
+                        "Producto".PadRight(paddings),
                         "Stock".PadRight(6),
                         "Precio".PadRight(6)
                         );
 
                 }
-                Console.WriteLine("|{0}|{1}|{2}|  {3:000.00}|",
+                try
+                {
+                    Console.WriteLine("|{0}|{1}|{2}|  {3:000.00}|",
                     products.ProductID.ToString().PadRight(3),
-                    products.ProductName.PadRight(paddings[0]),
+                    products.ProductName.PadRight(paddings),
                     products.UnitsInStock.ToString().PadLeft(6),
                     products.UnitPrice
                     );
+
+                }
+                catch (NullReferenceException) 
+                {
+                    Console.WriteLine("La tabla esta vacia");
+                }
                 i++;
             }
         }
 
-        public List<int> GetProductPaddings(List<Products> list)
+        public int GetProductPaddings(List<Products> list)
         {
-            string longestName;
-            longestName = list.Aggregate("", (max, cur) => max.Length > cur.ProductName.ToString().Length ? max : cur.ProductName.ToString());
-            var paddings = new List<int> { longestName.Length};
-            return paddings;
+            int namePadding;
+            //longestName = list.Aggregate("", (max, cur) => max.Length > cur.ProductName.ToString().Length ? max : cur.ProductName.ToString());
+            try
+            {
+                namePadding = list.Max(x => x.ProductName.Length);
+            }
+            catch (NullReferenceException) 
+            {
+                return 0;
+            }
+
+            return namePadding;
         }
 
         public void printCustomers(List<Customers> query)
