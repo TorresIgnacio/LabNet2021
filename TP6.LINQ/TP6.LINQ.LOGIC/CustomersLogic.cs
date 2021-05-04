@@ -54,16 +54,16 @@ namespace TP6.LINQ.LOGIC
             return query8;
         }
 
-        //public List<Customers> GetCustomersOrders()
-        //{
-        //    var query13 = (from customers in context.Customers
-        //                  join orders in context.Orders
-        //                    on customers.CustomerID equals orders.CustomerID
-        //                  group orders by customers.CustomerID into g
-        //                  select new { g.Key }
-        //                  ).ToList();
-        //    return query13
-        //}
+        public List<CustomersOrdersCount> GetCustomersOrders()
+        {
+            var query13 = (from c in context.Customers
+                           join o in context.Orders
+                           on c.CustomerID equals o.CustomerID
+                           group o by c.ContactName into g
+                           select new CustomersOrdersCount{ contactName = g.Key, cantOrders = g.Count() 
+                           }).ToList();
+            return query13;
+        }
         public List<string> GetCustomersIDs()
         {
             var customersIDs = context.Customers.Select(c => c.CustomerID).ToList();

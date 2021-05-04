@@ -118,6 +118,12 @@ namespace TP6.LINQ.UI
 
             //13.Query para devolver los customer con la cantidad de ordenes asociadas
 
+            var query13 = customersLogic.GetCustomersOrders();
+            Console.WriteLine("\n\nQuery 13: devolver los customer con la cantidad de ordenes asociadas\n");
+            foreach (var item in query13)
+            {
+                Console.WriteLine($"|{item.contactName.PadRight(30)}|{item.cantOrders.ToString().PadLeft(4)}|");
+            }
             
 
 
