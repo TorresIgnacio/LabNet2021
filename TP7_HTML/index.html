@@ -96,11 +96,11 @@
         $(document).on("click", "#submit", function (event) {
           var error = false;
           if (!$.fn.validar("#nombre")) {
-            $("#error1").load("error.txt");
+            $("#error1").load("/error.txt");
             error = true;
           }
           if (!$.fn.validar("#apellido")) {
-            $("#error2").load("error.txt");
+            $("#error2").load("/error.txt");
             error = true;
           }
           if (error) return false;
