@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale = 1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="stylesheet" href="/error.txt" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./error.txt" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link
       rel="stylesheet"
@@ -97,11 +97,11 @@
         $(document).on("click", "#submit", function (event) {
           var error = false;
           if (!$.fn.validar("#nombre")) {
-            $("#error1").load("/error.txt");
+            $("#error1").load("./error.txt");
             error = true;
           }
           if (!$.fn.validar("#apellido")) {
-            $("#error2").load("/error.txt");
+            $("#error2").load("./error.txt");
             error = true;
           }
           if (error) return false;
