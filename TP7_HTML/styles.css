@@ -1,0 +1,122 @@
+body {
+  margin-left: 10px;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(75, 65, 65),
+    rgb(151, 148, 148)
+  );
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: 20pt;
+  font-weight: 400;
+  text-decoration: underline;
+  color: khaki;
+}
+
+h3 {
+  margin-left: 10px;
+  font-weight: lighter;
+  font-size: 18pt;
+}
+
+h4 {
+  font-weight: lighter;
+  margin-left: 10px;
+  font-size: 18pt;
+}
+
+p {
+  text-align: center;
+  font-size: 18pt;
+  font-style: italic;
+}
+
+em {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: honeydew;
+  text-decoration: underline;
+}
+#hr1 {
+  width: 90%;
+  position: relative;
+  margin-top: -15px;
+}
+#hr2 {
+  width: 90%;
+  position: relative;
+  margin-top: -25px;
+}
+#formulario {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(156, 9, 9),
+    rgb(228, 69, 69)
+  );
+  color: azure;
+  align-self: auto;
+  border-radius: 10px;
+}
+
+.formbody {
+  margin-left: 10px;
+  text-align: left;
+
+  font-size: 15pt;
+  font-weight: normal;
+  font-family: sans-serif, Arial, Helvetica;
+}
+.m_error {
+  position: relative;
+  margin-top: -5px;
+  margin-left: 10px;
+  font-size: 12pt;
+  text-align: left;
+  font-weight: bold;
+}
+input {
+  margin-left: 10px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(9, 24, 24);
+  background-color: rgb(190, 190, 190);
+}
+
+label {
+  margin-left: 10px;
+  font-weight: normal;
+  font-size: 13pt;
+  font-style: oblique;
+}
+
+#fotoCV {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 100px;
+  float: right;
+}
+
+input[type="submit"],
+input[id="but_clear"] {
+  background-color: #7c0505;
+  border: 2pt solid lightgrey;
+  color: white;
+  padding: 10px 30px;
+  margin: 4px 20px 3px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition-duration: 0.5s;
+}
+
+input[type="submit"]:hover,
+input[id="but_clear"]:hover {
+  background-color: #aa8585;
+}
