@@ -96,23 +96,30 @@
 
         $(document).on("click", "#submit", function (event) {
           var error = false;
+          $("#error1").empty();
+          $("#error2").empty();
           if (!$.fn.validar("#nombre")) {
-            //Error: Funcion load no esta linqueando el archivo error.txt a menos que se abra la carpeta con visual code
-            $("#error1").load("./error.txt");
+            //Error: Funcion load no esta linqueando el archivo error.txt a menos que se ejecute el html en un server
+            //Solucion: reemplace la funcion load por append
+            //$("#error1").load("error.txt");
+            $("#error1").append("<p class=m_error id=m_error1>*Este campo es obligatorio</p>");
             error = true;
           }
           if (!$.fn.validar("#apellido")) {
-            $("#error2").load("./error.txt");
+            //$("#error2").load("error.txt");
+            $("#error2").append("<p class=m_error id=m_error2>*Este campo es obligatorio</p>");
             error = true;
           }
           if (error) return false;
+
+          //No pude hacer andar la respuesta desde el .php 
           // event.preventDefault();
           // var name = $("#nombre").val();
           // var apellido = $("#apellido").val();
           //   $.ajax({
           //     url     : 'savejson.php',
           //     method  : 'post',
-          //     data    : { 'name': name },
+          //     data    : { $("#formulario").serialize() },
           //     success : function( response ) {
           //         alert("exito!"+ response );
           //     },
@@ -127,6 +134,7 @@
             $(e).css("background-color", "yellow");
             return false;
           }
+          $(e).css("background-color", "rgb(190, 190, 190)");
           return true;
         };
 
