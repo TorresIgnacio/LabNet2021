@@ -1,0 +1,41 @@
+﻿@model TP8_MVC.Models.CustomerView
+@{
+    ViewBag.Title = "AddMod";
+}
+
+<br />
+<h2>Vista para añadir o modificar clientes</h2><br />
+@using (Html.BeginForm("AddMod", "Customer", FormMethod.Post))
+{
+    <div class="container">
+      <table class="table table-borderless table-hover">
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td>    
+                    @Html.TextBoxFor(c => c.ID)
+                    @Html.ValidationMessageFor(c => c.ID, null, new { @class = "text-danger" })
+            </td>
+          </tr>
+          <tr>
+              <td>Nombre</td>
+              <td>
+                    @Html.TextBoxFor(c => c.contactName)
+                    @Html.ValidationMessageFor(c => c.contactName, null, new { @class = "text-danger" })
+              </td>
+          </tr>
+          <tr>
+              <td>Compañía</td>
+              <td>
+                    @Html.TextBoxFor(c => c.companyName)
+                    @Html.ValidationMessageFor(c => c.companyName, null, new { @class = "text-danger" })
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <input type="submit" class="btn btn-success" value="Guardar" />
+}
+
+
+

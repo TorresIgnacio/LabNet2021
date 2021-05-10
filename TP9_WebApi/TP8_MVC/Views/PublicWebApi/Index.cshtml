@@ -1,0 +1,34 @@
+﻿@model TP8_MVC.Models.PublicWebApiView
+<style>
+    .container {
+        position: relative;
+        text-align: center;
+    }
+
+    .bottom-left {
+        position: absolute; 
+        bottom: 1%;
+        left: 10%;
+        color:red;
+        font-size:18pt;
+    }
+
+</style>
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+    <br />
+    <h2 style="text-align:center">Imagen del día de la NASA</h2>
+    <hr />
+    <br />
+    <h3>@Model.title</h3><br />
+    <p>@Model.explanation</p>
+
+    <a href="@Model.hdurl">
+        <div class="container">
+            <img src="@Model.url" alt="Imagen del día de la nasa">
+            <div class="bottom-left">Fecha: @Model.date</div>
+        </div>
+    </a>
+    <br />
+
+</body>
