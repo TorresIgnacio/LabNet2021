@@ -92,8 +92,7 @@ namespace TP5.EF.LOGIC
             customerUpdate.CompanyName          = customer.CompanyName          ?? customerUpdate.CompanyName;
             customerUpdate.ContactName          = customer.ContactName          ?? customerUpdate.ContactName;
             customerUpdate.ContactTitle         = customer.ContactTitle         ?? customerUpdate.ContactTitle;
-            customerUpdate.Country              = customer.Country              ?? customerUpdate.CompanyName;
-            customerUpdate.CustomerDemographics = customer.CustomerDemographics ?? customerUpdate.CustomerDemographics;
+            customerUpdate.Country              = customer.Country              ?? customerUpdate.Country;
             context.SaveChanges();
         }
 
@@ -108,7 +107,6 @@ namespace TP5.EF.LOGIC
             customerUpdate.ContactName          = customer.ContactName;
             customerUpdate.ContactTitle         = customer.ContactTitle;
             customerUpdate.Country              = customer.Country;
-            customerUpdate.CustomerDemographics = customer.CustomerDemographics;
 
             context.SaveChanges();
         }
