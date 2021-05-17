@@ -1,34 +1,63 @@
-<table mat-table [dataSource]="customersData" class="mat-elevation-z8" #myTable>
-  <!--- Note that these columns can be defined in any order.
+<div>
+  <table
+    #myTable
+    mat-table
+    [dataSource]="tableData"
+    class="customer-table mat-elevation-z8"
+  >
+    <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="ID">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element">{{ element.ID }}</td>
-  </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.ID }}</td>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="contactName">
-    <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let element">{{ element.contactName }}</td>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="contactName">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element">{{ element.contactName }}</td>
+    </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="companyName">
-    <th mat-header-cell *matHeaderCellDef>Compañía</th>
-    <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
-  </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef>Compañía</th>
+      <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef>Borrar</th>
-    <td mat-cell *matCellDef="let element" (click)="deleteCustomer(element.ID)">
-      <button mat-icon-button aria-label="Borrar cliente">
-        <mat-icon>delete_forever</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Borrar</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        (click)="deleteCustomer(element.ID)"
+      >
+        <button
+          mat-raised-button
+          aria-label="Borrar cliente"
+          class="delete-but"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef>Modificar</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          aria-label="Modificar cliente"
+          class="update-but"
+          (click)="sendParent(element)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

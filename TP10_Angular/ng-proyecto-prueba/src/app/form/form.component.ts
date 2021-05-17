@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { Customers } from 'src/app/customers/models/customers';
 import { NorthwindCustomersService } from 'src/app/customers/services/northwind-customers.service';
@@ -10,6 +10,7 @@ import { NorthwindCustomersService } from 'src/app/customers/services/northwind-
 })
 export class FormComponent implements OnInit {
 
+  @Input() parentData: Customers;
   customerForm: FormGroup;
   public customersData = new Customers();
 
@@ -25,14 +26,25 @@ export class FormComponent implements OnInit {
     return this.customerForm.get('companyName');
   }
 
-  constructor(private readonly fb: FormBuilder, private northwindCustomersService: NorthwindCustomersService) { }
-
-  ngOnInit(): void {
+  constructor(private readonly fb: FormBuilder, private northwindCustomersService: NorthwindCustomersService) {
     this.customerForm = this.fb.group({
       ID: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
       contactName: ['', Validators.maxLength(30)],
       companyName: ['', [Validators.required, Validators.maxLength(40)]]
     });
+  }
+
+  ngOnChanges(): void {
+    if (this.parentData != null) {
+      this.customerForm.setValue({
+        ID: this.parentData.ID,
+        contactName: this.parentData.contactName,
+        companyName: this.parentData.companyName
+      });
+    }
+  }
+  ngOnInit(): void {
+
   }
   onSubmit(): void {
     console.log(this.customerForm.value);
@@ -40,8 +52,8 @@ export class FormComponent implements OnInit {
     customer.ID = this.customerForm.get('ID').value;
     customer.contactName = this.customerForm.get('contactName').value;
     customer.companyName = this.customerForm.get('companyName').value;
-    this.northwindCustomersService.postCustomer(customer).subscribe(resp => { this.customersData = resp; });
-    this.northwindCustomersService.readAllCustomers();
+    this.northwindCustomersService.postCustomer(customer).subscribe(resp => { this.customersData = resp; },
+      error => { alert(error.message) });
   }
   updateCustomer(): void {
     var customer = new Customers();
@@ -49,8 +61,8 @@ export class FormComponent implements OnInit {
     customer.ID = id;
     customer.contactName = this.customerForm.get('contactName').value;
     customer.companyName = this.customerForm.get('companyName').value;
-    this.northwindCustomersService.patchCustomers(id, customer).subscribe(resp => { this.customersData = resp; });
-    this.northwindCustomersService.readAllCustomers();
+    this.northwindCustomersService.patchCustomers(id, customer).subscribe(resp => { this.customersData = resp; },
+      error => { alert(error.message) });
   }
 
 }

@@ -10,16 +10,20 @@ import { CustomersResponse } from 'src/app/customers/models/customers';
 })
 export class CustomersComponent implements OnInit {
 
-  public customersResponse = new CustomersResponse();
-  public customer: Customers;
-  constructor(private northwindCustomersService: NorthwindCustomersService) {
-    this.northwindCustomersService.readAllCustomers().subscribe(resp => {
-      this.customersResponse = resp;
-    });
+  // public customersResponse = new CustomersResponse();
+  public updateableCustomer: Customers;
+  constructor() {
+    // this.northwindCustomersService.readAllCustomers().subscribe(resp => {
+    //   this.customersResponse = resp;
+    // });
   }
 
   ngOnInit(): void {
   }
 
+  gotCustomer(customer: Customers) {
+    console.log(customer);
+    this.updateableCustomer = customer;
+  }
 
 }

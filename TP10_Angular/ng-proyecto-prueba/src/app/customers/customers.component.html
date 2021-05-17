@@ -2,12 +2,14 @@
 <div class="container">
   <div class="row" id="customer-form">
     <div class="col">
-      <app-form></app-form>
+      <app-form [parentData]="updateableCustomer"></app-form>
     </div>
-    <div class="col-9">
+    <div class="col">
       <mat-card id="mat-card-list"
         ><h2>Lista de empleados</h2>
-        <app-customers-table></app-customers-table>
+        <app-customers-table
+          (sendOutParent)="gotCustomer($event)"
+        ></app-customers-table>
         <!-- <mat-list role="list">
           <mat-list-item
             role="listitem"
