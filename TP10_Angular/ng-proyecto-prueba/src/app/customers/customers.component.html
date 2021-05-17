@@ -2,22 +2,18 @@
 <div class="container">
   <div class="row" id="customer-form">
     <div class="col">
-      <app-form [parentData]="updateableCustomer"></app-form>
+      <app-form
+        [parentData]="updateableCustomer"
+        (refreshTable)="gotNewCustomersData($event)"
+      ></app-form>
     </div>
     <div class="col">
       <mat-card id="mat-card-list"
         ><h2>Lista de empleados</h2>
         <app-customers-table
           (sendOutParent)="gotCustomer($event)"
+          [refreshCustomersTable]="refreshCustomersTable"
         ></app-customers-table>
-        <!-- <mat-list role="list">
-          <mat-list-item
-            role="listitem"
-            *ngFor="let item of customersResponse"
-            [ngValue]="item.id"
-            >{{ item.contactName }}</mat-list-item
-          >
-        </mat-list> -->
       </mat-card>
     </div>
   </div>

@@ -12,6 +12,7 @@ export class CustomersComponent implements OnInit {
 
   // public customersResponse = new CustomersResponse();
   public updateableCustomer: Customers;
+  public refreshCustomersTable: Boolean;
   constructor() {
     // this.northwindCustomersService.readAllCustomers().subscribe(resp => {
     //   this.customersResponse = resp;
@@ -19,11 +20,16 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshCustomersTable = false;
   }
 
   gotCustomer(customer: Customers) {
     console.log(customer);
     this.updateableCustomer = customer;
+  }
+
+  gotNewCustomersData(bool: Boolean) {
+    this.refreshCustomersTable = bool;
   }
 
 }

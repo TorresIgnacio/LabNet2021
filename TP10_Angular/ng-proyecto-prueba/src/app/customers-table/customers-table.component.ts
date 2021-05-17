@@ -1,7 +1,6 @@
 import { NorthwindCustomersService } from 'src/app/customers/services/northwind-customers.service';
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Customers, CustomersResponse } from 'src/app/customers/models/customers';
-import { MatTable } from '@angular/material/table';
 import { Subscription, Observable } from 'rxjs';
 
 
@@ -11,9 +10,8 @@ import { Subscription, Observable } from 'rxjs';
   styleUrls: ['./customers-table.component.scss']
 })
 export class CustomersTableComponent implements OnInit {
-
+  @Input() refreshCustomersTable: Boolean;
   @Output() sendOutParent = new EventEmitter<Customers>();
-  @ViewChild('myTable') myTable: MatTable<any>;
   public customersData = new CustomersResponse();
   public customerData = new Customers();
   tableData: Observable<CustomersResponse>;
@@ -21,11 +19,17 @@ export class CustomersTableComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'contactName', 'companyName', 'delete', 'update'];
 
   constructor(private northwindCustomersService: NorthwindCustomersService) {
+  }
+
+  ngOnInit(): void {
     this.tableData = this.northwindCustomersService.readAllCustomers();
     this.tableData.subscribe(resp => { }, error => { alert(error.message); });
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if (this.refreshCustomersTable) {
+      this.ngOnInit();
+    }
   }
 
   ngOnDestroy(): void {
@@ -33,11 +37,12 @@ export class CustomersTableComponent implements OnInit {
   }
 
   deleteCustomer(id) {
-    this.northwindCustomersService.deleteCustomers(id).subscribe(resp => { this.customerData = resp; },
+    this.northwindCustomersService.deleteCustomers(id).subscribe(
+      resp => {
+        this.customerData = resp;
+        this.ngOnInit();
+      },
       error => { alert(error.message); });
-    this.tableData = this.northwindCustomersService.readAllCustomers();
-    this.tableData.subscribe(resp => { }, error => { alert(error.message); });
-    this.myTable.renderRows;
   }
 
   sendParent(customer: Customers) {

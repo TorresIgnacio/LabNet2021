@@ -78,6 +78,7 @@
         mat-raised-button
         [disabled]="!customerForm.valid"
         (click)="updateCustomer()"
+        (mouseout)="sendParent(false)"
         appearance="legacy"
         color="accent"
       >

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { Customers } from 'src/app/customers/models/customers';
 import { NorthwindCustomersService } from 'src/app/customers/services/northwind-customers.service';
@@ -11,6 +11,7 @@ import { NorthwindCustomersService } from 'src/app/customers/services/northwind-
 export class FormComponent implements OnInit {
 
   @Input() parentData: Customers;
+  @Output() refreshTable = new EventEmitter<Boolean>();
   customerForm: FormGroup;
   public customersData = new Customers();
 
@@ -52,17 +53,30 @@ export class FormComponent implements OnInit {
     customer.ID = this.customerForm.get('ID').value;
     customer.contactName = this.customerForm.get('contactName').value;
     customer.companyName = this.customerForm.get('companyName').value;
-    this.northwindCustomersService.postCustomer(customer).subscribe(resp => { this.customersData = resp; },
+    this.northwindCustomersService.postCustomer(customer).subscribe(
+      resp => {
+        this.customersData = resp;
+        this.sendParent(true);
+      },
       error => { alert(error.message) });
   }
+
   updateCustomer(): void {
     var customer = new Customers();
     var id = this.customerForm.get('ID').value;
     customer.ID = id;
     customer.contactName = this.customerForm.get('contactName').value;
     customer.companyName = this.customerForm.get('companyName').value;
-    this.northwindCustomersService.patchCustomers(id, customer).subscribe(resp => { this.customersData = resp; },
+    this.northwindCustomersService.patchCustomers(id, customer).subscribe(
+      resp => {
+        this.customersData = resp;
+        this.sendParent(true);
+      },
       error => { alert(error.message) });
+  }
+
+  sendParent(refresh: Boolean) {
+    this.refreshTable.emit(refresh);
   }
 
 }
