@@ -1,0 +1,36 @@
+@import "~@angular/material/theming";
+
+// Define a custom mixin that takes in the current theme
+@mixin navbar-theme($my-theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($my-theme, primary);
+  $accent: map-get($my-theme, accent);
+  $warn: map-get($my-theme, warn);
+  // Create theme specfic styles
+  mat-button-toggle {
+    background-color: mat-color($primary);
+  }
+
+  mat-button-toggle:hover {
+    background-color: mat-color($warn);
+  }
+  // .mat-button-toggle-checked {
+  //   background-color: mat-color($accent);
+  // }
+  .mat-button-toggle-label-content {
+    color: rgb(230, 230, 230);
+  }
+}
+
+.mat-button-toggle-checked {
+  background-color: rgb(5, 182, 114);
+}
+
+.spacer {
+  flex: 0.07 1 auto;
+}
+
+mat-toolbar {
+  position: relative;
+  z-index: 3;
+}

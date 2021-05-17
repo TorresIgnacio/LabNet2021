@@ -1,0 +1,91 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <mat-card id="mat-card-form">
+    <mat-card-header>
+      <mat-card-title>Información del Cliente</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>ID de Cliente</mat-label>
+        <input formControlName="ID" matInput placeholder="Ej: CHOPS" />
+        <mat-icon matSuffix>manage_accounts</mat-icon>
+        <div *ngIf="customerIDCtrl?.invalid && customerIDCtrl?.touched">
+          <mat-hint
+            *ngIf="customerIDCtrl?.errors?.required"
+            class="text-warning"
+            >La ID es requerida</mat-hint
+          >
+          <mat-hint
+            *ngIf="customerIDCtrl?.errors?.maxlength"
+            class="text-warning"
+            >La ID tiene más de 5 letras</mat-hint
+          >
+          <mat-hint
+            *ngIf="customerIDCtrl?.errors?.minlength"
+            class="text-warning"
+            >La ID tiene menos de 5 letras</mat-hint
+          >
+        </div> </mat-form-field
+      ><br />
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de Contacto</mat-label>
+        <input
+          formControlName="contactName"
+          matInput
+          placeholder="Ej: Yang Wang"
+        />
+        <mat-icon matSuffix>manage_accounts</mat-icon>
+        <div *ngIf="contactNameCtrl?.invalid && contactNameCtrl?.touched">
+          <mat-hint
+            *ngIf="contactNameCtrl?.errors?.maxlength"
+            class="text-warning"
+            >El nombre tiene más de 30 letras</mat-hint
+          >
+        </div> </mat-form-field
+      ><br />
+      <mat-form-field appearance="outline">
+        <mat-label>Compañía</mat-label>
+        <input
+          formControlName="companyName"
+          matInput
+          placeholder="Ej: Chop-suey Chinese"
+        />
+        <mat-icon matSuffix>manage_accounts</mat-icon>
+        <div *ngIf="companyNameCtrl?.invalid && companyNameCtrl?.touched">
+          <mat-hint
+            *ngIf="companyNameCtrl?.errors?.required"
+            class="text-warning"
+            >Nombre de compañía es requerido</mat-hint
+          >
+          <mat-hint
+            *ngIf="companyNameCtrl?.errors?.maxlength"
+            class="text-warning"
+            >Compañía tiene más de 40 letras</mat-hint
+          >
+        </div> </mat-form-field
+      ><br />
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        [disabled]="!customerForm.valid"
+        type="submit"
+        appearance="legacy"
+        color="accent"
+      >
+        Crear
+      </button>
+      <button
+        mat-raised-button
+        [disabled]="!customerForm.valid"
+        (click)="updateCustomer()"
+        appearance="legacy"
+        color="accent"
+      >
+        Modificar
+      </button>
+      <button mat-raised-button type="reset" appearance="legacy" color="accent">
+        Limpiar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

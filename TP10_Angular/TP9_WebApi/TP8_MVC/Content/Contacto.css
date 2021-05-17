@@ -1,0 +1,14 @@
+﻿body {
+}
+
+#personalData{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+}
+
+.icon{
+    width: 20px;
+    height: auto;
+    float: left;
+    margin-right:15px;
+}

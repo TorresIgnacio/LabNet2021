@@ -1,0 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { Customers } from 'src/app/customers/models/customers';
+import { NorthwindCustomersService } from 'src/app/customers/services/northwind-customers.service';
+
+@Component({
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
+})
+export class FormComponent implements OnInit {
+
+  customerForm: FormGroup;
+  public customersData = new Customers();
+
+  get customerIDCtrl(): AbstractControl {
+    return this.customerForm.get('ID');
+  }
+
+  get contactNameCtrl(): AbstractControl {
+    return this.customerForm.get('contactName');
+  }
+
+  get companyNameCtrl(): AbstractControl {
+    return this.customerForm.get('companyName');
+  }
+
+  constructor(private readonly fb: FormBuilder, private northwindCustomersService: NorthwindCustomersService) { }
+
+  ngOnInit(): void {
+    this.customerForm = this.fb.group({
+      ID: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
+      contactName: ['', Validators.maxLength(30)],
+      companyName: ['', [Validators.required, Validators.maxLength(40)]]
+    });
+  }
+  onSubmit(): void {
+    console.log(this.customerForm.value);
+    var customer = new Customers();
+    customer.ID = this.customerForm.get('ID').value;
+    customer.contactName = this.customerForm.get('contactName').value;
+    customer.companyName = this.customerForm.get('companyName').value;
+    this.northwindCustomersService.postCustomer(customer).subscribe(resp => { this.customersData = resp; });
+    this.northwindCustomersService.readAllCustomers();
+  }
+  updateCustomer(): void {
+    var customer = new Customers();
+    var id = this.customerForm.get('ID').value;
+    customer.ID = id;
+    customer.contactName = this.customerForm.get('contactName').value;
+    customer.companyName = this.customerForm.get('companyName').value;
+    this.northwindCustomersService.patchCustomers(id, customer).subscribe(resp => { this.customersData = resp; });
+    this.northwindCustomersService.readAllCustomers();
+  }
+
+}

@@ -1,0 +1,31 @@
+@import "~@angular/material/theming";
+
+h1 {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+  font-weight: bold;
+}
+.container {
+  position: relative;
+}
+#customer-form {
+  position: sticky;
+}
+
+@mixin customers-theme($my-theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $warn: map-get($my-theme, warn);
+  $accent: map-get($my-theme, accent);
+  // Create theme specfic styles
+  #mat-card-list {
+    background-color: mat-color($accent, 400);
+  }
+  #mat-card-title {
+    position: relative;
+    margin-bottom: 1%;
+    z-index: 2;
+    background-color: mat-color($warn, 800);
+  }
+}

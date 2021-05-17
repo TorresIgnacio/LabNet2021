@@ -1,0 +1,18 @@
+@import "~@angular/material/theming";
+//We import our custom scss component here
+@import "/src/app/navbar/navbar.component.scss";
+
+@import "/src/app/customers/customers.component.scss";
+@import "/src/app/form/form.component.scss";
+@include mat-core();
+
+$my-theme-primary: mat-palette($mat-purple);
+$my-theme-accent: mat-palette($mat-green, A200, A100, A400);
+$my-theme-warn: mat-palette($mat-deep-orange);
+$my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+
+@include form-theme($my-theme);
+@include customers-theme($my-theme);
+@include navbar-theme($my-theme);
+
+@include angular-material-theme($my-theme);

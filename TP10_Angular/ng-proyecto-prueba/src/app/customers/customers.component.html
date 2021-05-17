@@ -1,0 +1,22 @@
+<mat-card id="mat-card-title"><h1>Clientes de Northwind</h1> </mat-card>
+<div class="container">
+  <div class="row" id="customer-form">
+    <div class="col">
+      <app-form></app-form>
+    </div>
+    <div class="col-9">
+      <mat-card id="mat-card-list"
+        ><h2>Lista de empleados</h2>
+        <app-customers-table></app-customers-table>
+        <!-- <mat-list role="list">
+          <mat-list-item
+            role="listitem"
+            *ngFor="let item of customersResponse"
+            [ngValue]="item.id"
+            >{{ item.contactName }}</mat-list-item
+          >
+        </mat-list> -->
+      </mat-card>
+    </div>
+  </div>
+</div>
