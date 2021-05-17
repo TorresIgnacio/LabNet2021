@@ -57,9 +57,16 @@ namespace TP9_WebApi.Controllers
                 ContactName = customer.contactName,
                 CompanyName = customer.companyName
             };
-            customerLogic.Add(newCustomer);
 
-            return CreatedAtRoute("DefaultApi", new { id = customer.ID }, customer);
+            try
+            {
+                customerLogic.Add(newCustomer);
+                return CreatedAtRoute("DefaultApi", new { id = customer.ID }, customer);
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         [ResponseType(typeof(CustomerView))]
