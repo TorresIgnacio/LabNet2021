@@ -1,8 +1,11 @@
-<mat-card id="mat-card-title"><h1>Clientes de Northwind</h1> </mat-card>
+<mat-card class="mat-card-title" id="mat-card-title"
+  ><h1>Clientes de Northwind</h1>
+</mat-card>
 <div class="container">
-  <div class="row" id="customer-form">
+  <div class="row">
     <div class="col">
       <app-form
+        id="customer-form"
         [parentData]="updateableCustomer"
         (refreshTable)="gotNewCustomersData($event)"
       ></app-form>

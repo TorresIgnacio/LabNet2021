@@ -37,16 +37,19 @@ export class FormComponent implements OnInit {
 
   ngOnChanges(): void {
     if (this.parentData != null) {
+      console.log(this.parentData);
       this.customerForm.setValue({
         ID: this.parentData.ID,
         contactName: this.parentData.contactName,
         companyName: this.parentData.companyName
       });
+      console.log(this.customerForm);
     }
   }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
   }
+
   onSubmit(): void {
     console.log(this.customerForm.value);
     var customer = new Customers();
@@ -78,5 +81,4 @@ export class FormComponent implements OnInit {
   sendParent(refresh: Boolean) {
     this.refreshTable.emit(refresh);
   }
-
 }

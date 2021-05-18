@@ -22,10 +22,4 @@ h2 {
   #mat-card-list {
     background-color: mat-color($accent, 400);
   }
-  #mat-card-title {
-    position: relative;
-    margin-bottom: 1%;
-    z-index: 2;
-    background-color: mat-color($warn, 800);
-  }
 }

@@ -4,6 +4,7 @@
 
 @import "/src/app/customers/customers.component.scss";
 @import "/src/app/form/form.component.scss";
+@import "/src/app/app.component.scss";
 @include mat-core();
 
 $my-theme-primary: mat-palette($mat-purple);
@@ -14,5 +15,6 @@ $my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 @include form-theme($my-theme);
 @include customers-theme($my-theme);
 @include navbar-theme($my-theme);
+@include app-theme($my-theme);
 
 @include angular-material-theme($my-theme);
