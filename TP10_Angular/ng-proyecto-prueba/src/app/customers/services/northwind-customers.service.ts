@@ -12,8 +12,8 @@ export class NorthwindCustomersService {
 
   constructor(private http: HttpClient) { }
 
-  readAllCustomers(): Observable<CustomersResponse> {
-    return this.http.get<CustomersResponse>(environment.northwind + 'customers');
+  readAllCustomers(): Observable<Array<Customers>> {
+    return this.http.get<Array<Customers>>(environment.northwind + 'customers');
   }
   readCustomer(id: string): Observable<Customers> {
     return this.http.get<any>(environment.northwind + 'customers/' + id);

@@ -1,5 +1,9 @@
 @import "~@angular/material/theming";
 
+app-form {
+  width: 100%;
+}
+
 h1 {
   text-align: center;
 }
@@ -11,7 +15,8 @@ h2 {
   position: relative;
 }
 #customer-form {
-  position: sticky;
+  position: relative;
+  margin-left: 5px;
 }
 
 @mixin customers-theme($my-theme) {
