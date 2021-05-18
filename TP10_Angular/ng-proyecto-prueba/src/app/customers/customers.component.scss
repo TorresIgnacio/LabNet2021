@@ -1,22 +1,11 @@
 @import "~@angular/material/theming";
 
-app-form {
-  width: 100%;
-}
-
 h1 {
   text-align: center;
 }
 h2 {
   text-align: center;
   font-weight: bold;
-}
-.container {
-  position: relative;
-}
-#customer-form {
-  position: relative;
-  margin-left: 5px;
 }
 
 @mixin customers-theme($my-theme) {

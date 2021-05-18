@@ -12,3 +12,9 @@
     background-color: mat-color($warn, 800);
   }
 }
+
+#mat-card-content {
+  position: relative;
+  font-size: 14pt;
+  font-weight: lighter;
+}
