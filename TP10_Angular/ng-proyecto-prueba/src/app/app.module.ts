@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
 import { NavbarComponent } from './navbar/navbar.component';
@@ -51,6 +52,7 @@ import { CustomersTableComponent } from './customers-table/customers-table.compo
     MatFormFieldModule,
     MatListModule,
     MatPaginatorModule,
+    MatSelectModule,
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,

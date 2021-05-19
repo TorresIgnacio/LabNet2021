@@ -17,7 +17,6 @@ export class CustomersComponent implements OnInit {
   }
 
   gotCustomer(customer: Customers) {
-    console.log(customer);
     this.updateableCustomer = customer;
   }
 

@@ -1,7 +1,6 @@
 import { NorthwindCustomersService } from 'src/app/customers/services/northwind-customers.service';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Customers, CustomersResponse } from 'src/app/customers/models/customers';
-import { Subscription, Observable } from 'rxjs';
+import { Customers } from 'src/app/customers/models/customers';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -12,14 +11,14 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./customers-table.component.scss']
 })
 export class CustomersTableComponent implements OnInit {
+
   @Input() refreshCustomersTable: Boolean;
   @Output() sendOutParent = new EventEmitter<Customers>();
   public customerData = new Customers();
-  //public customersData = new Array<Customers>();
   customersData = new MatTableDataSource<Customers>();
-  tableData: Observable<CustomersResponse>;
   displayedColumns: string[] = ['ID', 'contactName', 'companyName', 'delete', 'update'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(private northwindCustomersService: NorthwindCustomersService) {
 
   }
@@ -29,8 +28,6 @@ export class CustomersTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.tableData = this.northwindCustomersService.readAllCustomers();
-    // this.tableData.subscribe(resp => { }, error => { alert(error.message); });
     this.getTable();
   }
 
@@ -48,7 +45,6 @@ export class CustomersTableComponent implements OnInit {
       },
       error => {
         alert(error.message);
-        console.log(error);
       });
   }
 
@@ -58,7 +54,6 @@ export class CustomersTableComponent implements OnInit {
       this.northwindCustomersService.deleteCustomers(id).subscribe(
         resp => {
           this.customerData = resp;
-          //this.ngOnInit();
           this.getTable();
         },
         error => { alert(error.message); });

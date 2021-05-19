@@ -100,74 +100,100 @@ namespace TP6.LINQ.LOGIC
 
         public bool Add(Customers newCustomer)
         {
-            //Verifica que la id del nuevo cliente que se quiere agregar no exista
-            ValidateCustomer(newCustomer);
-
-            if (!context.Customers.Any(c => c.CustomerID == newCustomer.CustomerID))
+            try
             {
-                context.Customers.Add(newCustomer);
-                context.SaveChanges();
-                return true;
-            }
-            return false;
+                //Verifica que la id del nuevo cliente que se quiere agregar no exista
+                ValidateCustomer(newCustomer);
 
+                if (!context.Customers.Any(c => c.CustomerID == newCustomer.CustomerID))
+                {
+                    context.Customers.Add(newCustomer);
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }   
         }
 
         public void Delete(string id)
         {
-            if (id == null)
-                throw new ArgumentException("La ID no puede estar vacía");
-            if (id.Length != 5)
-                throw new ArgumentException("La ID debe tener 5 letras");
-            if (!id.All(c => char.IsLetter(c)))
-                throw new ArgumentException("La ID no puede contener números o símbolos");
+            try
+            {
+                if (id == null)
+                    throw new ArgumentException("La ID no puede estar vacía");
+                if (id.Length != 5)
+                    throw new ArgumentException("La ID debe tener 5 letras");
+                if (!id.All(c => char.IsLetter(c)))
+                    throw new ArgumentException("La ID no puede contener números o símbolos");
 
-            var customerAEliminar = context.Customers.Find(id);
-            if (customerAEliminar == null)
-                throw new ArgumentNullException("No existe ningún customer con esa ID");
-            context.Customers.Remove(customerAEliminar);
-            context.SaveChanges();
-            
+                var customerAEliminar = context.Customers.Find(id);
+                if (customerAEliminar == null)
+                    throw new ArgumentNullException("No existe ningún customer con esa ID");
+                context.Customers.Remove(customerAEliminar);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
         //UpdateLazy updatea los campos provistos dejando tal cual estaban los que no han sido especificados
         public bool UpdateLazy(Customers customer)
-         {
-            var customerUpdate = context.Customers.Find(customer.CustomerID);
-            if (customerUpdate == null)
-                return false;
-            ValidateCustomer(customer);
-            
+        {
+            try
+            {
+                var customerUpdate = context.Customers.Find(customer.CustomerID);
+                if (customerUpdate == null)
+                    return false;
+                ValidateCustomer(customer);
 
-            customerUpdate.Address              = customer.Address              ?? customerUpdate.Address;
-            customerUpdate.City                 = customer.City                 ?? customerUpdate.City;
-            customerUpdate.CompanyName          = customer.CompanyName          ?? customerUpdate.CompanyName;
-            customerUpdate.ContactName          = customer.ContactName          ?? customerUpdate.ContactName;
-            customerUpdate.ContactTitle         = customer.ContactTitle         ?? customerUpdate.ContactTitle;
-            customerUpdate.Country              = customer.Country              ?? customerUpdate.Country;
 
-            context.SaveChanges();
-            return true;
+                customerUpdate.Address = customer.Address ?? customerUpdate.Address;
+                customerUpdate.City = customer.City ?? customerUpdate.City;
+                customerUpdate.CompanyName = customer.CompanyName ?? customerUpdate.CompanyName;
+                customerUpdate.ContactName = customer.ContactName ?? customerUpdate.ContactName;
+                customerUpdate.ContactTitle = customer.ContactTitle ?? customerUpdate.ContactTitle;
+                customerUpdate.Country = customer.Country ?? customerUpdate.Country;
+
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         //UpdateAndBlank updatea los campos provistos y blanquea los que no han sido especificados
         public bool UpdateAndBlank(Customers customer) ///Devuelve un null si no encuentra nada
         {
-            var customerUpdate = context.Customers.Find(customer.CustomerID);
-            if (customerUpdate == null)
-                return false;
-            ValidateCustomer(customer);
-            
-            customerUpdate.Address              = customer.Address;
-            customerUpdate.City                 = customer.City;
-            customerUpdate.CompanyName          = customer.CompanyName;
-            customerUpdate.ContactName          = customer.ContactName;
-            customerUpdate.ContactTitle         = customer.ContactTitle;
-            customerUpdate.Country              = customer.Country;
-            
-            context.SaveChanges();
-            return true;
+            try
+            {
+                var customerUpdate = context.Customers.Find(customer.CustomerID);
+                if (customerUpdate == null)
+                    return false;
+                ValidateCustomer(customer);
+
+                customerUpdate.Address = customer.Address;
+                customerUpdate.City = customer.City;
+                customerUpdate.CompanyName = customer.CompanyName;
+                customerUpdate.ContactName = customer.ContactName;
+                customerUpdate.ContactTitle = customer.ContactTitle;
+                customerUpdate.Country = customer.Country;
+
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int CalcPad(List<Customers> customers)

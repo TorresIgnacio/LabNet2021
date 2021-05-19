@@ -3,7 +3,3 @@ export class Customers {
     contactName: string;
     companyName: string;
 }
-
-export class CustomersResponse {
-    customers: Customers[];
-}

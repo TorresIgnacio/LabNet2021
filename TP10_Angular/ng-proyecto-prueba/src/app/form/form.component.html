@@ -1,4 +1,4 @@
-<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit(); customerForm.reset()">
   <mat-card id="mat-card-form">
     <mat-card-header>
       <mat-card-title>Información del Cliente</mat-card-title>
@@ -6,26 +6,22 @@
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>ID de Cliente</mat-label>
-        <input formControlName="ID" matInput placeholder="Ej: CHOPS" />
-        <mat-icon matSuffix>manage_accounts</mat-icon>
-        <div *ngIf="customerIDCtrl?.invalid && customerIDCtrl?.touched">
-          <mat-hint
-            *ngIf="customerIDCtrl?.errors?.required"
-            class="text-warning"
-            >La ID es requerida</mat-hint
-          >
-          <mat-hint
-            *ngIf="customerIDCtrl?.errors?.maxlength"
-            class="text-warning"
-            >La ID tiene más de 5 letras</mat-hint
-          >
-          <mat-hint
-            *ngIf="customerIDCtrl?.errors?.minlength"
-            class="text-warning"
-            >La ID tiene menos de 5 letras</mat-hint
-          >
-        </div> </mat-form-field
-      ><br />
+        <mat-select
+          #IDSelect
+          formControlName="IDSelect"
+          (selectionChange)="onOptionsSelected(IDSelect)"
+        >
+          <mat-option value="newCustomer">Nuevo Cliente</mat-option>
+          <mat-option *ngFor="let customer of customersIDs" [value]="customer">
+            {{ customer }}
+          </mat-option>
+        </mat-select>
+        <mat-hint
+          *ngIf="customerIDCtrl?.touched && customerIDCtrl?.errors?.required"
+          class="text-warning"
+          >La ID es requerida</mat-hint
+        >
+      </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Nombre de Contacto</mat-label>
         <input
@@ -67,7 +63,7 @@
     <mat-card-actions>
       <button
         mat-raised-button
-        [disabled]="!customerForm.valid"
+        [disabled]="!customerForm.valid || addFlag == false"
         type="submit"
         (mouseout)="sendParent(false)"
         appearance="legacy"
@@ -77,15 +73,22 @@
       </button>
       <button
         mat-raised-button
-        [disabled]="!customerForm.valid"
-        (click)="updateCustomer()"
+        type="button"
+        [disabled]="!customerForm.valid || addFlag == true"
+        (click)="updateCustomer(); customerForm.reset()"
         (mouseup)="sendParent(false)"
         appearance="legacy"
         color="accent"
       >
         Modificar
       </button>
-      <button mat-raised-button type="reset" appearance="legacy" color="warn">
+      <button
+        mat-raised-button
+        type="button"
+        (click)="customerForm.reset()"
+        appearance="legacy"
+        color="warn"
+      >
         Limpiar
       </button>
     </mat-card-actions>
