@@ -206,19 +206,21 @@ namespace TP6.LINQ.LOGIC
         {
             if (customer.CustomerID == null)
                 throw new ArgumentException("La ID no puede estar vacía");
-            if (customer.CompanyName == null)
-                throw new ArgumentException("El nombre de la compañía no puede estar vacío");
             if (customer.CustomerID.Length != 5)
                 throw new ArgumentException("La ID debe tener 5 letras");
             if (!customer.CustomerID.All(c => char.IsLetter(c)))
                 throw new ArgumentException("La ID no puede contener números o símbolos");
-            if (!customer.ContactName.All(c => char.IsLetter(c) || char.IsSeparator(c)))
-                throw new ArgumentException("ContactName no puede contener números o símbolos");
-
+            if (customer.CompanyName == null)
+                throw new ArgumentException("El nombre de la compañía no puede estar vacío");
             if (customer.CompanyName.Length > 40)
                 throw new ArgumentException("CompanyName no puede tener más de 40 caracteres");
-            if (customer.ContactName?.Length > 30)
-                throw new ArgumentException("ContactName no puede tener más de 30 caracteres");
+            if (customer.ContactName != null)
+            {
+                if (!customer.ContactName.All(c => char.IsLetter(c) || char.IsSeparator(c)))
+                    throw new ArgumentException("ContactName no puede contener números o símbolos");
+                if (customer.ContactName.Length > 30)
+                    throw new ArgumentException("ContactName no puede tener más de 30 caracteres");
+            }
             return;
         }
 

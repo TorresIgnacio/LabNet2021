@@ -74,7 +74,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
+  submitForm(): void {
     var customer = new Customers();
     customer.ID = this.generateID(this.customerForm.get('companyName').value);
     customer.contactName = this.customerForm.get('contactName').value;
@@ -113,22 +113,24 @@ export class FormComponent implements OnInit {
   }
 
   generateID(companyName: string): string {
-    companyName = companyName.replace(/\s/g, "");
+    this.getCustomersIDs();
+    companyName = companyName.toUpperCase().replace(/[^A-Z]/g, "");
     var position = 4;
     if (companyName.length >= 5)
-      var id = companyName.slice(0, 5).toUpperCase();
+      var id = companyName.slice(0, 5);
     else
       var id = this.makeString();
+
     while (this.customersIDs.includes(id)) {
       if (id.charAt(position) == 'Z') {
         position -= 1;
         continue;
       }
-      // id = id.substring(0, position) + String.fromCharCode(id.charCodeAt(position) + 1);
       id = this.replaceAt(position, id, String.fromCharCode(id.charCodeAt(position) + 1));
     }
     return id;
   }
+
 
   replaceAt(index: number, id: String, replacement: String): string {
     return id.substr(0, index) + replacement + id.substr(index + replacement.length, id.length);
@@ -139,9 +141,7 @@ export class FormComponent implements OnInit {
     let inOptions: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     for (let i = 0; i < 5; i++) {
-
       outString += inOptions.charAt(Math.floor(Math.random() * inOptions.length));
-
     }
     return outString;
   }
