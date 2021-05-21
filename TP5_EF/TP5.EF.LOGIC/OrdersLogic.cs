@@ -18,7 +18,13 @@ namespace TP5.EF.LOGIC
             return customerOrders;
         }
         
-        public void Add(Orders newRow)
+        
+        public List<Orders> GetAll()
+        {
+            return context.Orders.ToList();
+        }
+
+        public bool Add(Orders newRow)
         {
             throw new NotImplementedException();
         }
@@ -28,19 +34,14 @@ namespace TP5.EF.LOGIC
             throw new NotImplementedException();
         }
 
-        public void UpdateAndBlank(Orders row)
+        public bool UpdateLazy(Orders row)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLazy(Orders row)
+        public bool UpdateAndBlank(Orders row)
         {
             throw new NotImplementedException();
         }
-        public List<Orders> GetAll()
-        {
-            return context.Orders.ToList();
-        }
-
     }
 }
